@@ -6,13 +6,6 @@ on:
     - main
     - release/*
 
-env:
-  working_dir: ./terraform
-
-defaults:
-  run:
-    working-directory: ./terraform
-
 permissions:
   actions: write
 
