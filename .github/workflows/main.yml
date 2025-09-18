@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.DEV_ORG_PAT_TOKEN }}
       - uses: hashicorp/setup-terraform@v3
 
   terraform_fmt:
@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.DEV_ORG_PAT_TOKEN }}
       - uses: hashicorp/setup-terraform@v3
     
       - name: Terraform fmt
