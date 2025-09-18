@@ -36,22 +36,23 @@ jobs:
         continue-on-error: true
       - name: Debug – Show repo structure
         run: ls -R
-        working-directory: ${{ github.workspace }}
+        working-directory: infra_ApplicationGway
      
 
       - name: Terraform Init
         id: init
         run: terraform init -input=false
-        working-directory: ${{ github.workspace }}/ApplicationGwaySetup/infra_ApplicationGway
+        working-directory: infra_ApplicationGway
 
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
-        working-directory: ${{ github.workspace }}/infra_ApplicationGway
+        working-directory: infra_ApplicationGway
 
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color -input=false
         continue-on-error: true
+        working-directory: infra_ApplicationGway
 
       
