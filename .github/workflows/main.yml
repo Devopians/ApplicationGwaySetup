@@ -11,7 +11,7 @@ env:
 
 defaults:
   run:
-    working-directory: ${{ env.working_dir }}
+    working-directory: ./terraform
 
 permissions:
   actions: write
