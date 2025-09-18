@@ -1,0 +1,37 @@
+name: "Workflow to setup aPG"
+
+on:
+  push:
+    branches:
+    - main
+    - release/*
+
+defaults:
+  run:
+    working-directory: ${{ env.tf_actions_working_dir }}
+
+permissions:
+  actions: read|write|none
+
+jobs:
+  setup:
+    name: "checkout & Setup Terraform"
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+
+  terraform_fmt:
+    name: Terraform FMT
+    runs-on: self-hosted
+    needs: setup
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+    
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+
+      
