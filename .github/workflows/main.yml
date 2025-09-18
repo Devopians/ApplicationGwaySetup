@@ -18,6 +18,9 @@ jobs:
         with:
           token: ${{ secrets.DEV_ORG_PAT_TOKEN }}
       - uses: hashicorp/setup-terraform@v3
+      - name: Debug – Show repo structure
+        run: ls -R
+        working-directory: ${{ github.workspace }}
 
   terraform_fmt:
     name: Terraform "init, plan, validate"
