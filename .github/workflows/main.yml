@@ -50,11 +50,6 @@ jobs:
         run: terraform plan -no-color -input=false -out=tfplan
         working-directory: infra_ApplicationGway/parent_module
 
-      - name: Upload Plan File
-        uses: actions/upload-artifact@v4
-        with:
-          name: tfplan
-          path: infra_ApplicationGway/parent_module/tfplan
 
   terraform_apply:
         name: Terraform "Apply"
@@ -64,14 +59,7 @@ jobs:
           - uses: actions/checkout@v4
             with:
               token: ${{ secrets.DEV_ORG_PAT_TOKEN }}
-          - uses: hashicorp/setup-terraform@v3
-
-          - name: Download Plan File
-            uses: actions/download-artifact@v4
-            with:
-              name: tfplan
-              path: infra_ApplicationGway/parent_module
-  
+          - uses: hashicorp/setup-terraform@v3  
      
           - name: Terraform Init
             id: init
@@ -80,5 +68,5 @@ jobs:
 
           - name: Terraform apply
             id: apply
-            run: terraform apply -no-color tfplan
+            run: terraform apply --auto-approve -no-color
             working-directory: infra_ApplicationGway/parent_module
